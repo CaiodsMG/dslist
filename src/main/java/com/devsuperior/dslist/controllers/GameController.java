@@ -29,4 +29,5 @@ public class GameController {
         GameDTO result = gameService.findById(gameId);
         return ResponseEntity.ok(result);
     }
+
 }
