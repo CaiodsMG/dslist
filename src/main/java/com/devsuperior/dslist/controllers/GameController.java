@@ -2,6 +2,7 @@ package com.devsuperior.dslist.controllers;
 
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
+import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,20 @@ public class GameController {
     public ResponseEntity<GameDTO> findById(@PathVariable Long gameId){
         GameDTO result = gameService.findById(gameId);
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public GameMinDTO create(@RequestBody Game game){
+        return gameService.create(game);
+    }
+
+    @PutMapping("/{gameId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public GameMinDTO update(@PathVariable Long gameId,
+                             @RequestBody Game game){
+
+        return gameService.update(gameId, game);
     }
 
 }

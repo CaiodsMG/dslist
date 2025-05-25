@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameService {
@@ -36,6 +37,28 @@ public class GameService {
                 orElseThrow(() -> new GameNotFound("Game com o ID " + id + " não foi encontrado."));
         return new GameDTO(result);
     }
+
+    public GameMinDTO create(Game game){
+        Game result = gameRepository.save(game);
+        return new GameMinDTO(result);
+    }
+
+    public GameMinDTO update(Long id, Game newGame){
+        Game game = gameRepository.findById(id).orElseThrow(() -> new GameNotFound("Game com o id " + id + " não foi encontrado."));
+
+        game.setTitle(newGame.getTitle());
+        game.setGenre(newGame.getGenre());
+        game.setPlatforms(newGame.getPlatforms());
+        game.setScore(newGame.getScore());
+        game.setImgUrl(newGame.getImgUrl());
+        game.setShortDescription(newGame.getShortDescription());
+        game.setLongDescription(newGame.getLongDescription());
+
+        gameRepository.save(game);
+
+        return new GameMinDTO(game);
+    }
+
 
     @Transactional(readOnly = true)
     public List<GameMinDTO> findByList(Long listId){
