@@ -41,6 +41,14 @@ public class GameController {
         return ResponseEntity.ok().body(gamesList);
     }
 
+    @GetMapping("/score/{score}")
+    public ResponseEntity<List<Game>> scoreGreaterThan(@RequestParam Double score){
+
+        List<Game> gameList = gameService.scoreGreaterOrEqual(score);
+
+        return ResponseEntity.status(HttpStatus.OK).body(gameList);
+    }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

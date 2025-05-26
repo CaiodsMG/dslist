@@ -6,6 +6,7 @@ import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.exceptions.GameDeleteException;
 import com.devsuperior.dslist.exceptions.GameNotFound;
 import com.devsuperior.dslist.exceptions.ListNotFound;
+import com.devsuperior.dslist.exceptions.ScoreNotBetween;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameListRepository;
 import com.devsuperior.dslist.repositories.GameRepository;
@@ -40,6 +41,17 @@ public class GameService{
 
     public List<Game> containingTitle(String name){
         return gameRepository.findByTitleContainingIgnoreCase(name);
+    }
+
+    public List<Game> scoreGreaterOrEqual(Double score){
+        Double minScore = 0.0;
+        Double maxScore = 5.0;
+
+        if (score >= minScore && score <= maxScore){
+            return gameRepository.findByScoreGreaterThanEqual(score);
+        }
+
+        throw new ScoreNotBetween("O Score deve estar entre 0 e 5");
     }
 
     public GameMinDTO create(Game game){

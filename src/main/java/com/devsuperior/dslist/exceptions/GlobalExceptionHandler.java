@@ -24,5 +24,10 @@ public class GlobalExceptionHandler {
                 .body(ex.getMessage());
     }
 
+    @ExceptionHandler(ScoreNotBetween.class)
+    public ResponseEntity<String> handleScoreNotBetween(ScoreNotBetween ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
 
 }
