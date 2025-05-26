@@ -22,12 +22,18 @@ public class GameListController {
 
     @GetMapping
     public List<GameListDTO> findAll(){
+
         return gameListService.findAll();
     }
 
     @GetMapping("/{gameListId}")
     public GameListDTO findById(@PathVariable Long gameListId){
         return gameListService.findById(gameListId);
+    }
+
+    @GetMapping("/orderDesc")
+    public List<GameListDTO> findAllDesc(){
+        return gameListService.findAllDesc();
     }
 
 

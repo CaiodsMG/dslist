@@ -32,6 +32,11 @@ public class GameListService {
         return new GameListDTO(gameList);
     }
 
+    public List<GameListDTO> findAllDesc(){
+        List<GameList> result = gameListRepository.findAllByOrderByIdDesc();
+        return result.stream().map(x -> new GameListDTO(x)).toList();
+    }
+
     public void move(Long listId, int posicaoOrigem, int posicaoDestino){
         List<GameMinProjection> list = gameRepository.searchByList(listId);
 
