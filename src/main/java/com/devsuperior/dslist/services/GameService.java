@@ -3,26 +3,26 @@ package com.devsuperior.dslist.services;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.exceptions.GameDeleteException;
 import com.devsuperior.dslist.exceptions.GameNotFound;
 import com.devsuperior.dslist.exceptions.ListNotFound;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameListRepository;
 import com.devsuperior.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Optional;
-
 @Service
-public class GameService {
+public class GameService{
 
     @Autowired
     private GameRepository gameRepository;
 
     @Autowired
     private GameListRepository gameListRepository;
+
 
     @Transactional(readOnly = true)
     public List<GameMinDTO> findAll(){
@@ -36,6 +36,10 @@ public class GameService {
         Game result = gameRepository.findById(id).
                 orElseThrow(() -> new GameNotFound("Game com o ID " + id + " não foi encontrado."));
         return new GameDTO(result);
+    }
+
+    public List<Game> containingTitle(String name){
+        return gameRepository.findByTitleContainingIgnoreCase(name);
     }
 
     public GameMinDTO create(Game game){
@@ -58,6 +62,19 @@ public class GameService {
 
         return new GameMinDTO(game);
     }
+
+    public void delete(long id) {
+        try{
+
+        Game game = gameRepository.findById(id)
+                .orElseThrow(() -> new GameNotFound("Game com o id " + id + " não foi encontrado."));
+
+        gameRepository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new GameDeleteException("Não foi possivel deletar o jogo. Ele está relacionado a outros registros.");
+        }
+    }
+
 
 
     @Transactional(readOnly = true)

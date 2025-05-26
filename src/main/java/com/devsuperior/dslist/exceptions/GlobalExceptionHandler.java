@@ -17,4 +17,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleListNotFound(ListNotFound ex){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
+    @ExceptionHandler(GameDeleteException.class)
+    public ResponseEntity<String> handleGameDeletion(GameDeleteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
+
+
 }
