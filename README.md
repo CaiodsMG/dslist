@@ -4,7 +4,7 @@ API RESTful para gerenciamento de listas de jogos, construída com Java e Spring
 
 ![Spring Boot](https://img.shields.io/badge/SpringBoot-2.7.5-brightgreen)
 ![Java](https://img.shields.io/badge/Java-17-blue)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Completo](https://img.shields.io/badge/Completo-brightgreen)
 
 ---
 
@@ -46,17 +46,17 @@ src/
 
 ## 🔧 Funcionalidades
 
-- 🔹 Listar todos os jogos
-- 🔹 Buscar jogo por **ID**
-- 🔹 Buscar jogos por **parte do nome**
-- 🔹 Buscar jogos por **score**
-- 🔹 Criar um novo jogo
-- 🔹 Criar uma nova lista de jogos
-- 🔹 Listar todas as listas
-- 🔹 Atualizar nome de uma lista
-- 🔹 Deletar uma lista
+- 🔹 Listar todos os Games
+- 🔹 Buscar Games por **ID**
+- 🔹 Buscar Games por **parte do nome**
+- 🔹 Buscar Games por **score**
+- 🔹 Criar um novo Game
+- 🔹 Criar uma nova GameList
+- 🔹 Listar todas as GameList
+- 🔹 Atualizar nome de uma GameList
+- 🔹 Deletar uma Gamelist
 - 🔹 Reordenar jogos dentro de uma lista
-- 🔹 Listar listas em **ordem decrescente**
+- 🔹 Listar GameList em **ordem decrescente**
 
 ---
 
