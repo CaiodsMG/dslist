@@ -2,7 +2,7 @@
 
 API RESTful para gerenciamento de listas de jogos, construída com Java e Spring Boot.
 
-![Spring Boot](https://img.shields.io/badge/SpringBoot-2.7.5-brightgreen)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.5-green)
 ![Java](https://img.shields.io/badge/Java-17-blue)
 ![Completo](https://img.shields.io/badge/Completo-brightgreen)
 
