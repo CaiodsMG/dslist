@@ -31,12 +31,16 @@ public class GameController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/name/{title}")
-    public ResponseEntity<List<Game>> containingTitle(@PathVariable String title){
+    @GetMapping("/search/{title}")
+    public ResponseEntity<List<Game>> containingTitle(@PathVariable String title) {
         List<Game> gamesList = gameService.containingTitle(title);
 
+        if (gamesList.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok().body(gamesList);
     }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
