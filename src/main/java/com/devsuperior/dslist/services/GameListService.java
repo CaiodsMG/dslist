@@ -2,6 +2,7 @@ package com.devsuperior.dslist.services;
 
 import com.devsuperior.dslist.dto.GameListDTO;
 import com.devsuperior.dslist.entities.GameList;
+import com.devsuperior.dslist.exceptions.GameListNotFound;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameListRepository;
 import com.devsuperior.dslist.repositories.GameRepository;
@@ -22,6 +23,13 @@ public class GameListService {
     public List<GameListDTO> findAll(){
         List<GameList> result = gameListRepository.findAll();
         return result.stream().map(x -> new GameListDTO(x)).toList();
+    }
+
+    public GameListDTO findById(Long id){
+        GameList gameList = gameListRepository.findById(id)
+                .orElseThrow(() -> new GameListNotFound("GameList com o id " + id + " Não foi encontrado." ));
+
+        return new GameListDTO(gameList);
     }
 
     public void move(Long listId, int posicaoOrigem, int posicaoDestino){
