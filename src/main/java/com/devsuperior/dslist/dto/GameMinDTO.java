@@ -2,15 +2,21 @@ package com.devsuperior.dslist.dto;
 
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.projections.GameMinProjection;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 
 public class GameMinDTO {
 
     private Long id;
+
     private String title;
+
     private Integer year;
+
     private String imgUrl;
+
     private String shortDescription;
+
     private Double score;
 
     public GameMinDTO(){

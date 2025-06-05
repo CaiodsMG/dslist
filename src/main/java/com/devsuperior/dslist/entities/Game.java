@@ -2,6 +2,7 @@ package com.devsuperior.dslist.entities;
 
 import java.util.Objects;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,19 +16,33 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
+
+    @Schema(description = "Titulo do jogo", example = "League of Legends")
     private String title;
 
+    @Schema(description = "Ano de Lançamento", example = "2009")
     @Column(name = "game_year")
     private Integer year;
+
+    @Schema(description = "Gênero", example = "MOBA")
     private String genre;
+
+    @Schema(description = "Plataformas", example = "PC")
     private String platforms;
+
+    @Schema(description = "Pontuação do jogo", example = "4.0")
     private Double score;
+
+    @Schema(description = "URL de uma imagem do jogo", example = "http://example.com/imagem.jpg")
     private String imgUrl;
 
+    @Schema(description = "Descrição curta sobre o jogo", example = "MOBA")
     @Column(columnDefinition = "TEXT")
     private String shortDescription;
 
+    @Schema(description = "Descrição completa sobre o jogo", example = "MOBA estratégico jogado em time.")
     @Column(columnDefinition = "TEXT")
     private String longDescription;
 
